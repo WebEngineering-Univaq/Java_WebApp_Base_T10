@@ -1,4 +1,4 @@
-# BaseWebApp-T10
+# Java_WebApp_Base_T10
 > Base project for a Java web application deployed on Tomcat 10
 
 This is the skeleton of a Java web application (with a sample servlet) running on JAkartaEE 9 and Tomcat 10
@@ -16,6 +16,6 @@ This is a Maven-based project. Simply download the code and open it in any Maven
 
 ---
 
-![University od L'Aquila](https://www.disim.univaq.it/skins/aqua/img/logo2021-2.png)
+![University of L'Aquila](https://www.disim.univaq.it/skins/aqua/img/logo2021-2.png)
 
 
