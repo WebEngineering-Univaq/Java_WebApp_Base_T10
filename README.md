@@ -1,7 +1,7 @@
 # Java_WebApp_Base_T10
 > Base project for a Java web application deployed on Tomcat 10
 
-This is the skeleton of a Java web application (with a sample servlet) running on JAkartaEE 9 and Tomcat 10
+This is the skeleton of a Java web application (with a sample servlet) running on JakartaEE 9 and Tomcat 10
  
 ## Usage
 
