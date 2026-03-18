@@ -28,20 +28,20 @@ public class DiagnosticServlet extends HttpServlet {
             out.println("<head>");
             out.println("<title>Diagnostic Information</title>");
             out.println("<style>");
-            out.println("body { font-family: monospace; margin: 20px; background: #f5f5f5; }");
-            out.println("h1 { color: #333; border-bottom: 2px solid #333; padding-bottom: 10px; }");
-            out.println("h2 { color: #666; margin-top: 30px; background: #e0e0e0; padding: 10px; }");
+            out.println("body { padding:0; margin:0; font-family: Verdana, Arial, Helvetica; font-size: 11pt; background: #73A2BD; }");
+            out.println("h1 { font-size: 20pt;    font-weight: bold;    text-align: center;     color: white; }");
+            out.println("h2 { color: white; margin-top: 30px; background-color: #53829D;   padding: 10px; }");
             out.println("table { border-collapse: collapse; width: 100%; margin: 10px 0; background: white; }");
-            out.println("th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }");
-            out.println("th { background-color: #4CAF50; color: white; }");
+            out.println("th, td { border: 1px solid #73A2BD; padding: 8px; text-align: left; }");
+            out.println("th { background-color: ##73A2BD; color: white; }");
             out.println("tr:nth-child(even) { background-color: #f9f9f9; }");
             out.println(".value { color: #0066cc; font-weight: bold; }");
             out.println("</style>");
             out.println("</head>");
             out.println("<body>");
-            
-            out.println("<h1>Servlet Diagnostic Information</h1>");          
-            out.println("<p><strong><em>Remove this Servlet in Production!</em></strong></p>");
+
+            out.println("<h1>Servlet Diagnostic Information</h1>");
+            out.println("<p style='text-align:center'><strong><em>Remove this Servlet in Production!</em></strong></p>");
 
             printRequestInfo(out, request);
             printHeaders(out, request);
@@ -99,7 +99,7 @@ public class DiagnosticServlet extends HttpServlet {
 
     private void printHeaders(PrintWriter out, HttpServletRequest request) {
         if (request.getHeaderNames().hasMoreElements()) {
-            Map<String, String> headersMap
+            Map<String, Object> headersMap
                     = Collections.list(request.getHeaderNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
@@ -111,7 +111,7 @@ public class DiagnosticServlet extends HttpServlet {
 
     private void printParameters(PrintWriter out, HttpServletRequest request) {
         if (request.getParameterNames().hasMoreElements()) {
-            Map<String, String> parametersMap
+            Map<String, Object> parametersMap
                     = Collections.list(request.getParameterNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
@@ -123,11 +123,11 @@ public class DiagnosticServlet extends HttpServlet {
 
     private void printRequestAttributes(PrintWriter out, HttpServletRequest request) {
         if (request.getAttributeNames().hasMoreElements()) {
-            Map<String, String> attributesMap
+            Map<String, Object> attributesMap
                     = Collections.list(request.getAttributeNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
-                                    name -> request.getAttribute(name).toString()
+                                    name -> request.getAttribute(name)
                             ));
             printTable(out, "Request Attributes", "Attribute Name", "Attribute Value", attributesMap);
         }
@@ -157,11 +157,11 @@ public class DiagnosticServlet extends HttpServlet {
                             makeMapEntry("Max Inactive Interval", session.getMaxInactiveInterval() + " seconds"),
                             makeMapEntry("Is New", String.valueOf(session.isNew()))
                     ));
-            Map<String, String> attributesMap
+            Map<String, Object> attributesMap
                     = Collections.list(session.getAttributeNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
-                                    name -> request.getAttribute(name).toString()
+                                    name -> request.getAttribute(name)
                             ));
 
             printTable(out, "Session Attributes", "Attribute Name", "Attribute Value", attributesMap);
@@ -183,7 +183,7 @@ public class DiagnosticServlet extends HttpServlet {
                 ));
 
         if (context.getInitParameterNames().hasMoreElements()) {
-            Map<String, String> initParamsMap
+            Map<String, Object> initParamsMap
                     = Collections.list(context.getInitParameterNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
@@ -194,11 +194,11 @@ public class DiagnosticServlet extends HttpServlet {
         }
 
         if (context.getAttributeNames().hasMoreElements()) {
-            Map<String, String> attributesMap
+            Map<String, Object> attributesMap
                     = Collections.list(context.getAttributeNames()).stream()
                             .collect(Collectors.toMap(
                                     name -> name,
-                                    name -> context.getAttribute(name).toString()
+                                    name -> context.getAttribute(name)
                             ));
             printTable(out, "Context Attributes", "Attributes Name", "Attributes Value", attributesMap);
         }
